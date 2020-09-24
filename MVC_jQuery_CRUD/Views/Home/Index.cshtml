@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVC_jQuery_CRUD.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<h2>Employe List</h2>
+<table id="tblemp" class="table" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="empID">
+                    <span>@item.Id</span>
+                </td>
+                <td class="fName">
+                    <span>@item.FirstName</span>
+                    <input type="text" value="@item.FirstName" style="display:none" />
+                </td>
+
+                <td class="lName">
+                    <span>@item.LastName</span>
+                    <input type="text" value="@item.LastName" style="display:none" />
+                </td>
+
+                <td class="gender">
+                    <span>@item.Gender</span>
+                    <input type="text" value="@item.Gender" style="display:none" />
+                </td>
+                <td class="salary">
+                    <span>@item.Salary</span>
+                    <input type="text" value="@item.Salary" style="display:none" />
+                </td>
+                <td>
+                    <a class="Edit" href="javascript:;">Edit</a>
+                    <a class="Update" href="javascript:;" style="display:none">Update</a>
+                    <a class="Cancel" href="javascript:;" style="display:none">Cancel</a>
+                    <a class="Delete" href="javascript:;">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        if ($("#tblemp tr").length > 2) {
+            $("#tblemp tr:eq(1)").remove();
+        }
+        else {
+            var row = $("#tblemp tr:last-child");
+            row.find(".Edit").hide();
+            row.find(".Delete").hide();
+            row.find("span").html('&nbsp;');
+        }
+
+    });
+</script>
